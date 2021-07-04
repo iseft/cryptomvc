@@ -16,5 +16,7 @@
 <input type="text" name="coinName" id="coinName" value="<?=$data['coin']->name ?>">
 <label for="coinSymbol">Edit symbol: </label>
 <input type="text" name="coinSymbol" id="coinSymbol" value="<?=$data['coin']->symbol ?>">
+<label for="apiID">Edit symbol: </label>
+<input type="text" name="apiID" id="apiID" value="<?=$data['coin']->api_id ?>">
 <input type="submit" value="Submit">
 </form>

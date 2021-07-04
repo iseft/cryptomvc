@@ -26,6 +26,18 @@ class Portfolio extends Model
     }
 
 
+    public function getAllInputsOutputsForUser($userid)
+    {
+
+        $this->db->query("SELECT * FROM ios WHERE user_id = :user_id");
+        $this->db->bind(":user_id", $userid);
+
+        $result = $this->db->resultSet();
+
+        return $result;
+    }
+
+
     public function getCoinIDsFromTransactions($transactions)
     {
         $coins = [];
@@ -52,6 +64,18 @@ class Portfolio extends Model
     }
 
 
+    public function getSumValueForInputsOutputs($inputsOutputs)
+    {
+
+        $sum = 0;
+        foreach ($inputsOutputs as $row) {
+            $sum = $sum + floatval($row->amount);
+        }
+
+        return $sum;
+    }
+
+
     public function getCoinSumValuesArray($transactions)
     {
 
@@ -60,8 +84,11 @@ class Portfolio extends Model
         $coinSumValues = [];
 
         foreach ($coinIDs as $coinID) {
+            $coinPrice = $this->getCoinNameFromID($coinID)->latestprice;
             $coinName = $this->getCoinNameFromID($coinID)->name;
-            $coinSumValues[$coinName] = $this->getSumValueForCoin($coinID, $transactions);
+            $sum = $this->getSumValueForCoin($coinID, $transactions);
+            $totalValue = $sum * $coinPrice;
+            $coinSumValues[$coinName] = ["sum" => $sum, 'price' => $coinPrice, "totalValue" => $totalValue];
         }
 
         return $coinSumValues;
@@ -69,7 +96,7 @@ class Portfolio extends Model
 
     public function getCoinNameFromID($coinID)
     {
-        $this->db->query("SELECT name FROM coins WHERE id = :id");
+        $this->db->query("SELECT * FROM coins WHERE id = :id");
 
         $this->db->bind(':id', $coinID);
 
@@ -97,6 +124,21 @@ class Portfolio extends Model
         $this->db->bind(':coinvalue', $coinvalue);
         $this->db->bind(':coinnum', $coinnum);
         $this->db->bind(':exchange_id', $exchangeid);
+
+        $success = $this->db->execute();
+
+        return $success;
+    }
+
+
+    public function addInputOutput($userID, $date, $amount, $exchangeID)
+    {
+        $this->db->query('INSERT INTO ios (user_id, date, amount, exchange_id) VALUES (:user_id, :date, :amount, :exchange_id)');
+
+        $this->db->bind(':user_id', $userID);
+        $this->db->bind(':date', $date);
+        $this->db->bind(':amount', $amount);
+        $this->db->bind(':exchange_id', $exchangeID);
 
         $success = $this->db->execute();
 
@@ -133,6 +175,16 @@ class Portfolio extends Model
         return $this->db->single();
     }
 
+
+    public function getInputOutput($ioID)
+    {
+        $this->db->query('SELECT * FROM ios WHERE id=:id');
+        $this->db->bind(':id', $ioID);
+
+        return $this->db->single();
+    }
+
+
     public function updateTransaction($transactionID, $userID, $coinID, $date, $coinValue, $coinNum, $exchangeID)
     {
         $this->db->query('UPDATE transactions SET coin_id = :coin_id, date = :date, coinvalue = :coinvalue, coinnum = :coinnum, exchange_id = :exchange_id WHERE id = :id');
@@ -143,6 +195,21 @@ class Portfolio extends Model
         $this->db->bind(':coinnum',  $coinNum);
         $this->db->bind(':exchange_id',  $exchangeID);
         $this->db->bind(':id',  $transactionID);
+
+        $success = $this->db->execute();
+
+        return $success;
+    }
+
+
+    public function updateInputOutput($ioID, $userID, $date, $amount, $exchangeID)
+    {
+        $this->db->query('UPDATE ios SET date = :date, amount = :amount, exchange_id = :exchange_id WHERE id = :id');
+
+        $this->db->bind(':date',  $date);
+        $this->db->bind(':amount',  $amount);
+        $this->db->bind(':exchange_id',  $exchangeID);
+        $this->db->bind(':id',  $ioID);
 
         $success = $this->db->execute();
 
@@ -164,14 +231,40 @@ class Portfolio extends Model
     }
 
 
-    public function checkAccess($userID, $transactionID)
+    public function deleteInputOutput($ioID)
+    {
+        $this->db->query('DELETE FROM ios WHERE id = :id');
+        $this->db->bind(':id', $ioID);
+
+        try {
+            $success = $this->db->execute();
+            return $success;
+        } catch (Throwable $e) {
+            return $e;
+        }
+    }
+
+
+    public function checkAccess($userID, $ID, $type)
     {
 
         if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
             return true;
-        } else {
+        } elseif ($type == "transaction") {
             $this->db->query('SELECT * FROM transactions WHERE id = :id AND user_id = :user_id');
-            $this->db->bind(':id', $transactionID);
+            $this->db->bind(':id', $ID);
+            $this->db->bind(':user_id', $userID);
+
+            $result = $this->db->single();
+
+            if ($result != false) {
+                return true;
+            }
+            return false;
+        } elseif ($type == "input_output") {
+
+            $this->db->query('SELECT * FROM ios WHERE id = :id AND user_id = :user_id');
+            $this->db->bind(':id', $ID);
             $this->db->bind(':user_id', $userID);
 
             $result = $this->db->single();
@@ -183,10 +276,19 @@ class Portfolio extends Model
         }
     }
 
+
     public function getUserNameByTransactionID($transactionID)
     {
         $this->db->query('SELECT user_name FROM transactions as t INNER JOIN users as u ON t.user_id = u.user_id WHERE t.id = :transactionID');
         $this->db->bind(':transactionID', $transactionID);
+        return $this->db->single()->user_name;
+    }
+
+
+    public function getUserNameByInputOutputID($ioID)
+    {
+        $this->db->query('SELECT user_name FROM ios as i INNER JOIN users as u ON i.user_id = u.user_id WHERE i.id = :ioID');
+        $this->db->bind(':ioID', $ioID);
         return $this->db->single()->user_name;
     }
 
@@ -207,7 +309,6 @@ class Portfolio extends Model
     }
 
 
-    
     public function getUserNameByUserID($userID)
     {
         $this->db->query('SELECT user_name FROM users WHERE user_id = :user_id');

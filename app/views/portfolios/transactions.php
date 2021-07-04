@@ -53,7 +53,7 @@ if (isset($data['transactionAddSuccess'])) : ?>
                 <th><?= $transaction['coinNum'] ?></th>
                 <th><?= $transaction['exchangeName'] ?></th>
                 <td><a href="http://<?php echo URLROOT; ?>/portfolios/edit_transaction/<?= $transaction['id'] ?>">Edit</a></td>
-                <td><a href="http://<?php echo URLROOT; ?>/portfolios/delete_transaction/<?= $transaction['id'] ?>">Delete</a></td>
+                <td><a href="http://<?php echo URLROOT; ?>/portfolios/delete_transaction/<?= $transaction['id'] ?>" class="confirmDelete">Delete</a></td>
             </tr>
 
         <?php endforeach; ?>
@@ -78,10 +78,10 @@ if (isset($data['transactionAddSuccess'])) : ?>
 
         <label for="coinvalue">Coin value: </label>
 
-        <input type="number" name="coinvalue" id="coinvalue" value="Coin value" required>
+        <input type="number" name="coinvalue" id="coinvalue" value="Coin value" step="0.00000001" required>
 
         <label for="coinnum">Coin #:</label>
-        <input type="number" name="coinnum" id="coinnum" value="Number of coins" required>
+        <input type="number" name="coinnum" id="coinnum" value="Number of coins" step="0.00000001" required>
 
 
         <label for="exchange">Exchange: </label>

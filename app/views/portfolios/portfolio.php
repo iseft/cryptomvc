@@ -23,10 +23,16 @@
 
             <tr>
                 <td><?= $key ?></td>
-                <td><?= $value ?></td>
+                <td><?= $value['sum'] ?></td>
+                <td><?= $value['price'] ?></td>
+                <td><?= $value['totalValue'] ?></td>
             </tr>
 
         <?php endforeach; ?>
     </table>
 
 <?php endforeach; ?>
+
+<form action="http://<?php echo URLROOT ?>/coins/updatePrice" method="POST">
+<input type="submit" value="Update Prices!">
+</form>

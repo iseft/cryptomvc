@@ -15,6 +15,12 @@
             </li>
         <?php endif; ?>
 
+        <?php if (isset($_SESSION['user_id'])) : ?>
+            <li>
+                <a href="http://<?php echo URLROOT; ?>/portfolios/inputs_outputs">Deposits/Withdrawals</a>
+            </li>
+        <?php endif; ?>
+
         <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) : ?>
             <li>
                 <a href="http://<?php echo URLROOT; ?>/coins/show">Coins</a>

@@ -44,12 +44,12 @@ class Coins extends Controller
 
         if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
 
-            if (isset($_GET['coinname']) && isset($_GET['coinsymbol'])) {
-                $added = $this->coinModel->addCoin($_GET['coinname'], $_GET['coinsymbol']);
+            if (isset($_POST['coinname']) && isset($_POST['coinsymbol']) && isset($_POST['apiID'])) {
+                $added = $this->coinModel->addCoin($_POST['coinname'], $_POST['coinsymbol'], $_POST['apiID']);
 
                 if ($added) {
-                    $_SESSION['addedCoinName'] = $_GET['coinname'];
-                    $_SESSION['addedCoinSymbol'] = $_GET['coinsymbol'];
+                    $_SESSION['addedCoinName'] = $_POST['coinname'];
+                    $_SESSION['addedCoinSymbol'] = $_POST['coinsymbol'];
                     header('location:http://' . URLROOT . '/coins/show');
                 } else {
                     die("Could not add coin, something went wrong.");
@@ -67,8 +67,8 @@ class Coins extends Controller
             $coin = $this->coinModel->getCoin($coinID);
             $data['coin'] = $coin;
 
-            if (isset($_POST['coinID']) && isset($_POST['coinName']) && isset($_POST['coinSymbol'])) {
-                $success = $this->coinModel->updateCoin($_POST['coinID'], $_POST['coinName'], $_POST['coinSymbol']);
+            if (isset($_POST['coinID']) && isset($_POST['coinName']) && isset($_POST['coinSymbol']) && isset($_POST['apiID'])) {
+                $success = $this->coinModel->updateCoin($_POST['coinID'], $_POST['coinName'], $_POST['coinSymbol'], $_POST['apiID']);
 
                 if ($success) {
                     $coin = $this->coinModel->getCoin($coinID);
@@ -106,5 +106,10 @@ class Coins extends Controller
         } else {
             $this->view('noaccess');
         }
+    }
+
+
+    public function updatePrice() {
+        $this->coinModel->updateCoinPrices();
     }
 }

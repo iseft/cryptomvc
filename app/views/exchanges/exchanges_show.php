@@ -40,7 +40,7 @@ if (isset($data['addedExchangeName'])) : ?>
         <tr>
             <td><?= $row->name ?></td>
             <td> <a href="http://<?php echo URLROOT; ?>/exchanges/edit/<?= $row->id ?>">Edit</a></td>
-            <td> <a href="http://<?php echo URLROOT; ?>/exchanges/delete/<?= $row->id ?>">Delete</a></td>
+            <td> <a href="http://<?php echo URLROOT; ?>/exchanges/delete/<?= $row->id ?>" class="confirmDelete">Delete</a></td>
         </tr>
 
     <?php endforeach; ?>

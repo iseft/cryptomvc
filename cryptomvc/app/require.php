@@ -10,3 +10,5 @@ require_once 'helpers/functions.php';
 require_once 'config/config.php';
 
 $init = new Core();
+
+echo 'test2';

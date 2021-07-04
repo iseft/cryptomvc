@@ -6,15 +6,19 @@
     ?>
 </div>
 
+<div class="container">
+
+<h1>Manage Exchanges</h1>
+
 <?php
 if (isset($data['deletedExchangeName']) && isset($data['exchangeDeleteSuccess'])) :
     if ($data['exchangeDeleteSuccess']) : ?>
 
-        <h2>Successfully deleted exchange <?= $data['deletedExchangeName'] ?></h2>
+        <p class="successFeedback">Successfully deleted exchange <?= $data['deletedExchangeName'] ?></p>
 
     <?php else : ?>
 
-        <h2>Could not delete exchange <?= $data['deletedExchangeName'] ?></h2>
+        <p class="invalidFeedback">Could not delete exchange <?= $data['deletedExchangeName'] ?></p>
 
 <?php
     endif;
@@ -22,7 +26,7 @@ endif; ?>
 
 <?php
 if (isset($data['addedExchangeName'])) : ?>
-    <h2>Added exchange <?= $data['addedExchangeName'] ?></h2>
+    <p class="successFeedback">Added exchange <?= $data['addedExchangeName'] ?></p>
 
 <?php endif; ?>
 
@@ -48,7 +52,9 @@ if (isset($data['addedExchangeName'])) : ?>
 
 
 <form action="http://<?php echo URLROOT ?>/exchanges/add" method="POST">
-    <input type="text" name="exchangename" placeholder="Exchange name" required>
-    <input type="submit" value="Add">
+    <input type="text" name="exchangename" placeholder="Exchange name" class="textInput" required>
+    <input type="submit" id="submit" value="Add">
 
 </form>
+
+</div>

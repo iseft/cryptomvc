@@ -5,7 +5,7 @@ class Exchange extends Model
 
     public function getAllExchanges()
     {
-        $this->db->query("SELECT * FROM exchanges");
+        $this->db->query("SELECT * FROM exchanges ORDER BY name ASC");
 
         $exchanges =  $this->db->resultSet();
 

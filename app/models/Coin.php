@@ -5,9 +5,11 @@ class Coin extends Model
 
     public function getAllCoins()
     {
-        $this->db->query("SELECT * FROM coins");
+        $this->db->query("SELECT * FROM coins ORDER BY name ASC");
 
         $coins =  $this->db->resultSet();
+
+        var_dump($coins);
 
         return $coins;
     }

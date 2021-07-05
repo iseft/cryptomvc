@@ -6,7 +6,7 @@ class Portfolio extends Model
     public function getAllTransactions()
     {
 
-        $this->db->query("SELECT * FROM transactions");
+        $this->db->query("SELECT * FROM transactions ORDER BY date ASC");
 
         $result = $this->db->resultSet();
 
@@ -17,7 +17,7 @@ class Portfolio extends Model
     public function getAllTransactionsForUser($userid)
     {
 
-        $this->db->query("SELECT * FROM transactions WHERE user_id = :user_id");
+        $this->db->query("SELECT * FROM transactions WHERE user_id = :user_id ORDER BY date ASC");
         $this->db->bind(":user_id", $userid);
 
         $result = $this->db->resultSet();
@@ -29,7 +29,7 @@ class Portfolio extends Model
     public function getAllInputsOutputsForUser($userid)
     {
 
-        $this->db->query("SELECT * FROM ios WHERE user_id = :user_id");
+        $this->db->query("SELECT * FROM ios WHERE user_id = :user_id ORDER BY date ASC");
         $this->db->bind(":user_id", $userid);
 
         $result = $this->db->resultSet();
@@ -148,7 +148,7 @@ class Portfolio extends Model
 
     public function getAllCoins()
     {
-        $this->db->query("SELECT * FROM coins");
+        $this->db->query("SELECT * FROM coins ORDER BY name ASC");
 
         $coins =  $this->db->resultSet();
 
@@ -158,7 +158,7 @@ class Portfolio extends Model
 
     public function getAllExchanges()
     {
-        $this->db->query("SELECT * FROM exchanges");
+        $this->db->query("SELECT * FROM exchanges ORDER BY name ASC");
 
         $exchanges =  $this->db->resultSet();
 

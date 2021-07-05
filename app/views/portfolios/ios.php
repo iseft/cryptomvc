@@ -6,78 +6,88 @@
     ?>
 </div>
 
-<?php
-if (isset($data['iosDeleteSuccess'])) :
-    if ($data['iosDeleteSuccess']) : ?>
+<div class="container">
 
-        <h2>Successfully deleted deposit/withdrawal.</h2>
+    <h2>Manage Deposits/Withdrawals</h2>
 
-    <?php else : ?>
+    <?php
+    if (isset($data['iosDeleteSuccess'])) :
+        if ($data['iosDeleteSuccess']) : ?>
 
-        <h2>Could not delete deposit/withdrawal.</h2>
+            <p class="successFeedback">Successfully deleted deposit/withdrawal.</p>
 
-<?php
-    endif;
-endif; ?>
+        <?php else : ?>
 
-<?php
-if (isset($data['iosAddSuccess'])) : ?>
-    <h2>Successfully added new deposit/withdrawal.</h2>
+            <p class="invalidFeedback">Could not delete deposit/withdrawal.</p>
 
-<?php endif; ?>
+    <?php
+        endif;
+    endif; ?>
+
+    <?php
+    if (isset($data['iosAddSuccess'])) : ?>
+        <p class="successFeedback">Successfully added new deposit/withdrawal.</p>
+
+    <?php endif; ?>
 
 
 
-<?php foreach ($data['allInputsOutputs'] as $key => $value) : ?>
+    <?php foreach ($data['allInputsOutputs'] as $key => $value) : ?>
 
-    <h2><?= $key ?></h2>
+        <h3 class="listview"><?= $key ?> (Total: $<?= $data['inputsOutputs'][$key] ?>)</h3>
 
-    <h3>Sum value: <?= $data['inputsOutputs'][$key] ?></h3>
+        <div class="wrapper-center">
 
-    <table>
-        <tr>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Exchange</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Amount (USD)</th>
+                    <th>Exchange</th>
+                    <th class="edit">Edit</th>
+                    <th class="delete">Delete</th>
+                </tr>
 
-        <?php
+                <?php
 
-        foreach ($data['allInputsOutputs'][$key] as $inputOutput) : ?>
+                foreach ($data['allInputsOutputs'][$key] as $inputOutput) : ?>
 
-            <tr>
-                <th><?= $inputOutput['date'] ?></th>
-                <th><?= $inputOutput['amount'] ?></th>
-                <th><?= $inputOutput['exchangeName'] ?></th>
-                <td><a href="http://<?php echo URLROOT; ?>/portfolios/edit_input_output/<?= $inputOutput['id'] ?>">Edit</a></td>
-                <td><a href="http://<?php echo URLROOT; ?>/portfolios/delete_input_output/<?= $inputOutput['id'] ?>" class="confirmDelete">Delete</a></td>
-            </tr>
+                    <tr>
+                        <td><?= $inputOutput['date'] ?></th>
+                        <td><?= $inputOutput['amount'] ?></th>
+                        <td><?= $inputOutput['exchangeName'] ?></th>
+                        <td class="edit"><a href="http://<?php echo URLROOT; ?>/portfolios/edit_input_output/<?= $inputOutput['id'] ?>"><i class="fas fa-edit"></i></a></td>
+                        <td class="delete"><a href="http://<?php echo URLROOT; ?>/portfolios/delete_input_output/<?= $inputOutput['id'] ?>" class="confirmDelete"><i class="fas fa-trash-alt"></a></td>
+                    </tr>
 
-        <?php endforeach; ?>
-    </table>
+                <?php endforeach; ?>
+            </table>
 
-    <form action="http://<?php echo URLROOT; ?>/portfolios/addInputOutput" method="POST">
-        <input type="hidden" name="user_id" value="<?= $data['userNamesAndIDs'][$key] ?>">
+            <h4 class="add">Add new deposit/withdrawal: </h4>
 
-        <label for="date">Date: </label>
-        <input type="date" name="date" id="date" required>
+            <form action="http://<?php echo URLROOT; ?>/portfolios/addInputOutput" method="POST">
+                <input type="hidden" name="user_id" value="<?= $data['userNamesAndIDs'][$key] ?>">
 
-        <label for="amount">Amount (USD): </label>
-        <input type="number" name="amount" id="amount" required>
+                <label for="date">Date: </label>
+                <input type="date" name="date" id="date" required>
 
-        <label for="exchange">Exchange: </label>
-        <select name="exchange_id" id="exchange">
-            <?php foreach ($data['exchanges'] as $row) : ?>
+                <label for="amount">Amount (USD): </label>
+                <input type="number" name="amount" id="amount" step="0.000000001" required>
 
-                <option value="<?= $row->id; ?>"><?= $row->name; ?></option>
+                <label for="exchange">Exchange: </label>
+                <select name="exchange_id" id="exchange">
+                    <?php foreach ($data['exchanges'] as $row) : ?>
 
-            <?php endforeach; ?>
-        </select>
+                        <option value="<?= $row->id; ?>"><?= $row->name; ?></option>
 
-        <input type="submit" value="Add">
+                    <?php endforeach; ?>
+                </select>
 
-    </form>
+                <input type="submit" id="submit" value="Add">
 
-<?php endforeach; ?>
+            </form>
+
+        </div>
+
+    <?php endforeach; ?>
+
+</div>

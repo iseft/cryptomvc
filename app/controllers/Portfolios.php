@@ -34,6 +34,12 @@ class Portfolios extends Controller
                 $allTransactions = $this->portfolioModel->getAllTransactionsForUser($userID);
 
                 $data['coinSumValues'][$userName] = $this->portfolioModel->getCoinSumValuesArray($allTransactions);
+
+                $data['totalUSDValue'][$userName] = 0;
+
+                foreach ($data['coinSumValues'][$userName] as $row) {
+                    $data['totalUSDValue'][$userName] += $row['totalValue'];
+                }
             }
 
             $this->view('portfolios/portfolio', $data);

@@ -6,43 +6,51 @@
     ?>
 </div>
 
-<?php if (isset($data["updated"])) :?>
-<h2>Updated</h2>
-<?php endif; ?>
+<div class="container">
 
-<?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) : ?>
-<h2>User: <?= $data['transactionUser'] ?></h2>
-<?php endif; ?>
+<h2>Edit transaction details</h2>
 
-<form action="http://<?php echo URLROOT ?>/portfolios/edit_transaction/<?=$data['transaction']->id ?>" method="POST">
-<input type="hidden" name="transactionID" value="<?=$data['transaction']->id ?>">
-<input type="hidden" name="userID" value="<?=$_SESSION['user_id'] ?>">
+    <?php if (isset($data["updated"])) : ?>
+        <p class="successFeedback">Updated transaction details</p>
+    <?php endif; ?>
 
-<label for="coin">Coin: </label>
-<select name="coinID" id="coin">
-        <?php foreach ($data['allCoins'] as $row) : ?>
+    <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == true) : ?>
+        <h3>User: <?= $data['transactionUser'] ?></h3>
+    <?php endif; ?>
 
-            <option value="<?= $row->id; ?>" <?php echo ($row->id == $data['transaction']->coin_id) ? 'selected' : '' ?>><?= $row->name; ?></option>
+    <form action="http://<?php echo URLROOT ?>/portfolios/edit_transaction/<?= $data['transaction']->id ?>" method="POST">
+        <input type="hidden" name="transactionID" value="<?= $data['transaction']->id ?>">
+        <input type="hidden" name="userID" value="<?= $_SESSION['user_id'] ?>">
 
-        <?php endforeach; ?>
-    </select>
-<label for="date">Date: </label>
-<input type="date" name="date" id="date" value="<?=$data['transaction']->date ?>">
+        <label for="coin">Coin: </label>
+        <select name="coinID" id="coin">
+            <?php foreach ($data['allCoins'] as $row) : ?>
 
-<label for="coinValue">Coin value: </label>
-<input type="text" name="coinValue" id="coinValue" value="<?=$data['transaction']->coinvalue ?>">
+                <option value="<?= $row->id; ?>" <?php echo ($row->id == $data['transaction']->coin_id) ? 'selected' : '' ?>><?= $row->name; ?></option>
 
-<label for="coinNum">Coin #: </label>
-<input type="text" name="coinNum" id="coinNum" value="<?=$data['transaction']->coinnum ?>">
+            <?php endforeach; ?>
+        </select>
+        <label for="date">Date: </label>
+        <input type="date" name="date" id="date" value="<?= $data['transaction']->date ?>">
 
-<label for="exchange">Exchange: </label>
-<select name="exchangeID" id="excahnge">
-        <?php foreach ($data['allExchanges'] as $row) : ?>
+        <label for="coinValue">Coin value: </label>
+        <input type="number" step="0.00000001" name="coinValue" id="coinValue" value="<?= $data['transaction']->coinvalue ?>">
 
-            <option value="<?= $row->id; ?>" <?php echo ($row->id == $data['transaction']->exchange_id) ? 'selected' : '' ?>><?= $row->name; ?></option>
+        <label for="coinNum">Coin #: </label>
+        <input type="number" step="0.00000001" name="coinNum" id="coinNum" value="<?= $data['transaction']->coinnum ?>">
 
-        <?php endforeach; ?>
-    </select>
+        <label for="exchange">Exchange: </label>
+        <select name="exchangeID" id="excahnge">
+            <?php foreach ($data['allExchanges'] as $row) : ?>
 
-<input type="submit" value="Submit">
-</form>
+                <option value="<?= $row->id; ?>" <?php echo ($row->id == $data['transaction']->exchange_id) ? 'selected' : '' ?>><?= $row->name; ?></option>
+
+            <?php endforeach; ?>
+        </select>
+
+        <input type="submit" id="submit" value="Submit">
+    </form>
+
+    <p class="back"><i class="fas fa-backward back"></i> <a href="http://<?php echo URLROOT; ?>/portfolios/transactions">Back to Transactions</a></p>
+
+</div>

@@ -9,8 +9,21 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
+body p {
+    font-size: 16px;
+}
+
 .top-nav {
     display: block;
+}
+
+.navlogo {
+    padding-left: 80px;
+    padding-top: 10px;
+}
+
+a.logo {
+    text-decoration: none;
 }
 
 .top-nav ul {
@@ -44,6 +57,7 @@ body {
     background-repeat: no-repeat;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 .wrapper-landing {
@@ -93,6 +107,15 @@ body {
     font-weight: 100;
 }
 
+.container h3.listview {
+    margin-top: 40px;
+}
+
+.container h4 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 .btn-login {
     border: 1px solid #ffffff;
     padding: 6px 24px;
@@ -126,7 +149,8 @@ body {
     margin-top: 2%;
 }
 
-.container input {
+.container input,
+select {
     width: 200px;
     height: 45px;
     border: 1px solid #cccccc;
@@ -136,13 +160,18 @@ body {
     margin: 5px;
 }
 
-.container input[type="text"] {
-    font-size: 22px;
+.container input[type="date"] {
+    font-size: 16px;
+}
+
+.container select {
+    font-size: 16px;
 }
 
 input::placeholder {
     color: #1a1a1a;
-    font-size: 22px;
+    font-size: 16px;
+    padding-left: 2px;
 }
 
 #submit {
@@ -151,24 +180,14 @@ input::placeholder {
     border: 1px solid #000000;
     background-color: #000;
     color: #ffffff;
-    font-size: 20px;
-    margin: 20px 0px 0px 0px;
+    font-size: 18px;
 }
 
 #submit:hover {
     border: 1px solid #a1a1a1;
     background-color: #a1a1a1;
     transition: 0.15s ease-in;
-}
-
-.options a {
-    color: #006400;
-}
-
-.options a:hover {
-    color: #000000;
-    transition: 0.20s ease-in;
-    text-decoration: none;
+    cursor: pointer;
 }
 
 .container .invalidFeedback {
@@ -198,6 +217,8 @@ input::placeholder {
 table {
     border: solid #1a1a1a;
     border-width: 0.1px;
+    font-size: 16;
+    border-collapse: collapse;
 }
 
 th {
@@ -209,6 +230,13 @@ th {
     margin: 0;
 }
 
+th.edit,
+th.delete,
+td.edit,
+td.delete {
+    width: 60px;
+}
+
 td {
     padding: 10px 15px;
     text-align: center;
@@ -216,4 +244,63 @@ td {
 
 tr:nth-child(even) {
     background: #CCC
+}
+
+i.fa-edit {
+    color: #121412;
+}
+
+i.fa-edit:hover {
+    color: #3c65be;
+    transition: 0.2s;
+}
+
+i.fa-trash-alt {
+    color: #121412;
+}
+
+i.fa-trash-alt:hover {
+    color: rgb(220, 20, 60);
+    transition: 0.2s;
+}
+
+i.back {
+    margin-right: 5px;
+}
+
+i.logo {
+    font-size: 40px;
+}
+
+i.fab.fa-bitcoin {
+    color: rgb(175, 151, 12);
+}
+
+i.fab.fa-ethereum {
+    color: rgb(202, 201, 201);
+}
+
+.wrapper-center {
+    text-align: center;
+}
+
+.wrapper-center table {
+    margin: 0 auto;
+}
+
+.wrapper-center form input {
+    margin: 10 auto;
+}
+
+.wrapper-center select {
+    margin: 10 auto;
+}
+
+label {
+    font-size: 17px;
+    padding: 10px 5px;
+}
+
+p.back {
+    margin-top: 35px;
 }

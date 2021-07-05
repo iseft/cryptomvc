@@ -6,33 +6,38 @@
     ?>
 </div>
 
-<?php foreach ($data['coinSumValues'] as $key => $coinSumValues) : ?>
+<div class="container">
 
-    <h2><?= $key ?></h2>
+    <h2>Portfolio</h2>
 
-    <table>
-        <tr>
-            <th>Coin name</th>
-            <th>Coin #</th>
-            <th>Coin value</th>
-            <th>Total value</th>
-        </tr>
-        <?php
+    <form action="http://<?php echo URLROOT ?>/coins/updatePrice" method="POST">
+        <input type="submit" id="submit" value="Update Prices!">
+    </form>
 
-        foreach ($coinSumValues as $key => $value) : ?>
+    <?php foreach ($data['coinSumValues'] as $key => $coinSumValues) : ?>
 
+        <h3 class="listview"><?= $key ?> (Total value: $<?= $data['totalUSDValue'][$key] ?>)</h3>
+
+        <table>
             <tr>
-                <td><?= $key ?></td>
-                <td><?= $value['sum'] ?></td>
-                <td><?= $value['price'] ?></td>
-                <td><?= $value['totalValue'] ?></td>
+                <th>Coin name</th>
+                <th>Coin #</th>
+                <th>Coin price (USD)</th>
+                <th>Total value (USD)</th>
             </tr>
+            <?php
 
-        <?php endforeach; ?>
-    </table>
+            foreach ($coinSumValues as $key => $value) : ?>
 
-<?php endforeach; ?>
+                <tr>
+                    <td><?= $key ?></td>
+                    <td><?= $value['sum'] ?></td>
+                    <td><?= $value['price'] ?></td>
+                    <td><?= $value['totalValue'] ?></td>
+                </tr>
 
-<form action="http://<?php echo URLROOT ?>/coins/updatePrice" method="POST">
-<input type="submit" value="Update Prices!">
-</form>
+            <?php endforeach; ?>
+        </table>
+
+    <?php endforeach; ?>
+</div>

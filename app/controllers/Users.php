@@ -11,14 +11,9 @@ class Users extends Controller
 
     public function login()
     {
-        /* 
-        $data = [
-            'title' => 'Login page',
-            'username' => '',
-            'password' => '',
-            'usernameError' => '',
-            'passwordError' => ''
-        ]; */
+        if (isset($_SESSION['user_id'])) {
+            header('location:http://' . URLROOT . '/portfolios/show');
+        }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 

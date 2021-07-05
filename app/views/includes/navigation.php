@@ -1,4 +1,11 @@
 <nav class="top-nav">
+
+    <div class="navlogo">
+        <a class="logo" href="http://<?php echo URLROOT; ?>/pages/index">
+            <i class="fab fa-bitcoin fa-3x logo"></i>
+            <i class="fab fa-ethereum fa-3x logo"></i></a>
+    </div>
+
     <ul>
 
         <?php

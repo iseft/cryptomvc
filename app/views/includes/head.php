@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <script src="http://<?php echo URLROOT ?>/public/javascript/javascript.js"></script>
+    <script src="https://kit.fontawesome.com/edfb5a7dc1.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     

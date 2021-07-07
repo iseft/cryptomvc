@@ -9,8 +9,6 @@ class Coin extends Model
 
         $coins =  $this->db->resultSet();
 
-        var_dump($coins);
-
         return $coins;
     }
 

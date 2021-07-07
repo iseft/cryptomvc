@@ -1,8 +1,8 @@
 <?php
 
-define('DB_HOST', '127.0.0.1');
-define('DB_USER', 'root');
-define('DB_PASS', 'kiskacsa');
+define('DB_HOST', 'eu-cdbr-west-01.cleardb.com');
+define('DB_USER', 'b12c2dff882973');
+define('DB_PASS', 'ffcd7dcf');
 define('DB_NAME', 'cryptomvcdb');
 
 define('APPROOT', dirname(dirname(__FILE__)));

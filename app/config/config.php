@@ -6,7 +6,7 @@ define('DB_PASS', 'kiskacsa');
 define('DB_NAME', 'cryptomvcdb');
 
 define('APPROOT', dirname(dirname(__FILE__)));
-define('URLROOT', 'localhost/cryptomvc');
+define('URLROOT', 'https://cryptomvc.herokuapp.com/');
 
 define('SITENAME', 'Crypto 2.0 (MVC)');
 

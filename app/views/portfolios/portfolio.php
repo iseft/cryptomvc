@@ -10,7 +10,7 @@
 
     <h2>Portfolio</h2>
 
-    <form action="http://<?php echo URLROOT ?>/coins/updatePrice" method="POST">
+    <form action="https://<?php echo URLROOT ?>/coins/updatePrice" method="POST">
         <input type="submit" id="submit" value="Update Prices!">
     </form>
 

@@ -46,7 +46,7 @@ class Exchanges extends Controller
 
                 if ($added) {
                     $_SESSION['addedExchangeName'] = $_POST['exchangename'];
-                    header('location:http://' . URLROOT . '/exchanges/show');
+                    header('location:https://' . URLROOT . '/exchanges/show');
                 } else {
                     die("Could not add exchange, something went wrong.");
                 }
@@ -101,7 +101,7 @@ class Exchanges extends Controller
                 $_SESSION['exchangeDeleteSuccess'] = false;
             }
 
-            header('location:http://' . URLROOT . '/exchanges/show');
+            header('location:https://' . URLROOT . '/exchanges/show');
         } else {
             $this->view('noaccess');
         }

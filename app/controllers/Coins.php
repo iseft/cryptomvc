@@ -50,7 +50,7 @@ class Coins extends Controller
                 if ($added) {
                     $_SESSION['addedCoinName'] = $_POST['coinname'];
                     $_SESSION['addedCoinSymbol'] = $_POST['coinsymbol'];
-                    header('location:http://' . URLROOT . '/coins/show');
+                    header('location:https://' . URLROOT . '/coins/show');
                 } else {
                     die("Could not add coin, something went wrong.");
                 }
@@ -102,7 +102,7 @@ class Coins extends Controller
                 $_SESSION['coinDeleteSuccess'] = false;
             }
             
-            header('location:http://' . URLROOT . '/coins/show');
+            header('location:https://' . URLROOT . '/coins/show');
         } else {
             $this->view('noaccess');
         }

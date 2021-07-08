@@ -12,7 +12,7 @@ class Users extends Controller
     public function login()
     {
         if (isset($_SESSION['user_id'])) {
-            header('location:http://' . URLROOT . '/portfolios/show');
+            header('location:https://' . URLROOT . '/portfolios/show');
         }
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -105,7 +105,7 @@ class Users extends Controller
         session_unset();
         session_destroy();
 
-        header('location:http://' . URLROOT . '/users/login');
+        header('location:https://' . URLROOT . '/users/login');
     }
 
 
@@ -181,7 +181,7 @@ class Users extends Controller
             $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
             if ($this->userModel->register($data)) {
-                header('Location:http://' . URLROOT . '/users/login');
+                header('Location:https://' . URLROOT . '/users/login');
             } else {
                 die("Something went wrong.");
             }
@@ -196,7 +196,7 @@ class Users extends Controller
 
             if ($loggedInUser) {
                 $this->createUserSession($loggedInUser);
-                header('Location:http://' . URLROOT . '/portfolios/show', );
+                header('Location:https://' . URLROOT . '/portfolios/show', );
             } else {
                 $data['passwordError'] = 'Password or username is incorrect. Please try again.';
 

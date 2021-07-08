@@ -58,8 +58,8 @@
                         <td><?= $transaction['coinValue'] ?></th>
                         <td><?= $transaction['coinNum'] ?></th>
                         <td><?= $transaction['exchangeName'] ?></th>
-                        <td class="edit"><a href="http://<?php echo URLROOT; ?>/portfolios/edit_transaction/<?= $transaction['id'] ?>">Edit</a></td>
-                        <td class="delete"><a href="http://<?php echo URLROOT; ?>/portfolios/delete_transaction/<?= $transaction['id'] ?>" class="confirmDelete">Delete</a></td>
+                        <td class="edit"><a href="https://<?php echo URLROOT; ?>/portfolios/edit_transaction/<?= $transaction['id'] ?>">Edit</a></td>
+                        <td class="delete"><a href="https://<?php echo URLROOT; ?>/portfolios/delete_transaction/<?= $transaction['id'] ?>" class="confirmDelete">Delete</a></td>
                     </tr>
 
                 <?php endforeach; ?>
@@ -68,7 +68,7 @@
 
             <h4 class="add">Add new transaction: </h4>
 
-            <form action="http://<?php echo URLROOT; ?>/portfolios/addTransaction" method="POST">
+            <form action="https://<?php echo URLROOT; ?>/portfolios/addTransaction" method="POST">
                 <input type="hidden" name="user_id" value="<?= $data['userNamesAndIDs'][$key] ?>">
 
                 <label for="coin">Coin: </label>

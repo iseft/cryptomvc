@@ -10,7 +10,7 @@
     <div class="wrapper-login">
         <h2>Register</h2>
 
-        <form action="http://<?php echo URLROOT; ?>/users/register" method="POST">
+        <form action="https://<?php echo URLROOT; ?>/users/register" method="POST">
             <input type="text" placeholder="Username *" name="username">
             <span class="invalidFeedback">
                 <?php echo $data['usernameError']; ?>
@@ -34,7 +34,7 @@
             <br>
             <button id="submit" type="submit" value="submit">Submit</button>
 
-            <p class="options">Not registered yet? <a href="http://<?php echo URLROOT; ?>/users/register">Create an account!</a></p>
+            <p class="options">Not registered yet? <a href="https://<?php echo URLROOT; ?>/users/register">Create an account!</a></p>
 
         </form>
 

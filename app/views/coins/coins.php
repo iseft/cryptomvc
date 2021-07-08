@@ -50,8 +50,8 @@
                         <td><?= $row->symbol ?></td>
                         <td><?= $row->api_id ?></td>
                         <td><?= $row->latestprice ?></td>
-                        <td class="edit"><a href="http://<?php echo URLROOT; ?>/coins/edit/<?= $row->id ?>"><i class="fas fa-edit"></i></a></td>
-                        <td class="delete"><a href="http://<?php echo URLROOT; ?>/coins/delete/<?= $row->id ?>" class="confirmDelete"><i class="fas fa-trash-alt"></i></a></td>
+                        <td class="edit"><a href="https://<?php echo URLROOT; ?>/coins/edit/<?= $row->id ?>"><i class="fas fa-edit"></i></a></td>
+                        <td class="delete"><a href="https://<?php echo URLROOT; ?>/coins/delete/<?= $row->id ?>" class="confirmDelete"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>
 
                 <?php endforeach; ?>
@@ -59,7 +59,7 @@
 
             <h4 class="add">Add new coin: </h4>
 
-            <form action="http://<?php echo URLROOT ?>/coins/add" method="POST">
+            <form action="https://<?php echo URLROOT ?>/coins/add" method="POST">
                 <label for="coinname">Coin: </label>
                 <input type="text" name="coinname" id="coinname" placeholder="Coin name" required>
                 <label for="coinsymbol">Symbol: </label>

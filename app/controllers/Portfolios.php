@@ -176,7 +176,7 @@ class Portfolios extends Controller
 
                 if ($added) {
                     $_SESSION['transactionAddSuccess'] = true;
-                    header('location:http://' . URLROOT . '/portfolios/transactions');
+                    header('location:https://' . URLROOT . '/portfolios/transactions');
                 } else {
                     die("Could not add transaction, something went wrong.");
                 }
@@ -272,7 +272,7 @@ class Portfolios extends Controller
                 $_SESSION['transactionDeleteSuccess'] = false;
             }
 
-            header('location:http://' . URLROOT . '/portfolios/transactions');
+            header('location:https://' . URLROOT . '/portfolios/transactions');
         } else {
             $this->view('noaccess');
         }
@@ -292,7 +292,7 @@ class Portfolios extends Controller
                 $_SESSION['iosDeleteSuccess'] = false;
             }
 
-            header('location:http://' . URLROOT . '/portfolios/inputs_outputs');
+            header('location:https://' . URLROOT . '/portfolios/inputs_outputs');
         } else {
             $this->view('noaccess');
         }
@@ -308,7 +308,7 @@ class Portfolios extends Controller
 
                 if ($added) {
                     $_SESSION['iosAddSuccess'] = true;
-                    header('location:http://' . URLROOT . '/portfolios/inputs_outputs');
+                    header('location:https://' . URLROOT . '/portfolios/inputs_outputs');
                 } else {
                     die("Could not add input/output, something went wrong.");
                 }

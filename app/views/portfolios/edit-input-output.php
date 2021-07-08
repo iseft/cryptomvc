@@ -18,7 +18,7 @@
         <h3>User: <?= $data['inputOutputUser'] ?></h3>
     <?php endif; ?>
 
-    <form action="http://<?php echo URLROOT ?>/portfolios/edit_input_output/<?= $data['inputOutput']->id ?>" method="POST">
+    <form action="https://<?php echo URLROOT ?>/portfolios/edit_input_output/<?= $data['inputOutput']->id ?>" method="POST">
         <input type="hidden" name="iosID" value="<?= $data['inputOutput']->id ?>">
         <input type="hidden" name="userID" value="<?= $_SESSION['user_id'] ?>">
 
@@ -40,6 +40,6 @@
         <input type="submit" id="submit" value="Submit">
     </form>
 
-    <p class="back"><i class="fas fa-backward back"></i> <a href="http://<?php echo URLROOT; ?>/portfolios/inputs_outputs">Back to deposits/withdrawals</a></p>
+    <p class="back"><i class="fas fa-backward back"></i> <a href="https://<?php echo URLROOT; ?>/portfolios/inputs_outputs">Back to deposits/withdrawals</a></p>
 
 </div>

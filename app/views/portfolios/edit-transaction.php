@@ -18,7 +18,7 @@
         <h3>User: <?= $data['transactionUser'] ?></h3>
     <?php endif; ?>
 
-    <form action="http://<?php echo URLROOT ?>/portfolios/edit_transaction/<?= $data['transaction']->id ?>" method="POST">
+    <form action="https://<?php echo URLROOT ?>/portfolios/edit_transaction/<?= $data['transaction']->id ?>" method="POST">
         <input type="hidden" name="transactionID" value="<?= $data['transaction']->id ?>">
         <input type="hidden" name="userID" value="<?= $_SESSION['user_id'] ?>">
 
@@ -51,6 +51,6 @@
         <input type="submit" id="submit" value="Submit">
     </form>
 
-    <p class="back"><i class="fas fa-backward back"></i> <a href="http://<?php echo URLROOT; ?>/portfolios/transactions">Back to Transactions</a></p>
+    <p class="back"><i class="fas fa-backward back"></i> <a href="https://<?php echo URLROOT; ?>/portfolios/transactions">Back to Transactions</a></p>
 
 </div>

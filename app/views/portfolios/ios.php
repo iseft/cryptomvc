@@ -55,8 +55,8 @@
                         <td><?= $inputOutput['date'] ?></th>
                         <td><?= $inputOutput['amount'] ?></th>
                         <td><?= $inputOutput['exchangeName'] ?></th>
-                        <td class="edit"><a href="http://<?php echo URLROOT; ?>/portfolios/edit_input_output/<?= $inputOutput['id'] ?>"><i class="fas fa-edit"></i></a></td>
-                        <td class="delete"><a href="http://<?php echo URLROOT; ?>/portfolios/delete_input_output/<?= $inputOutput['id'] ?>" class="confirmDelete"><i class="fas fa-trash-alt"></a></td>
+                        <td class="edit"><a href="https://<?php echo URLROOT; ?>/portfolios/edit_input_output/<?= $inputOutput['id'] ?>"><i class="fas fa-edit"></i></a></td>
+                        <td class="delete"><a href="https://<?php echo URLROOT; ?>/portfolios/delete_input_output/<?= $inputOutput['id'] ?>" class="confirmDelete"><i class="fas fa-trash-alt"></a></td>
                     </tr>
 
                 <?php endforeach; ?>
@@ -64,7 +64,7 @@
 
             <h4 class="add">Add new deposit/withdrawal: </h4>
 
-            <form action="http://<?php echo URLROOT; ?>/portfolios/addInputOutput" method="POST">
+            <form action="https://<?php echo URLROOT; ?>/portfolios/addInputOutput" method="POST">
                 <input type="hidden" name="user_id" value="<?= $data['userNamesAndIDs'][$key] ?>">
 
                 <label for="date">Date: </label>

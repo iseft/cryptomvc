@@ -44,8 +44,8 @@
 
                 <tr>
                     <td><?= $row->name ?></td>
-                    <td class="edit"> <a href="http://<?php echo URLROOT; ?>/exchanges/edit/<?= $row->id ?>"><i class="fas fa-edit"></i></a></td>
-                    <td class="delete"> <a href="http://<?php echo URLROOT; ?>/exchanges/delete/<?= $row->id ?>" class="confirmDelete"><i class="fas fa-trash-alt"></i></a></td>
+                    <td class="edit"> <a href="https://<?php echo URLROOT; ?>/exchanges/edit/<?= $row->id ?>"><i class="fas fa-edit"></i></a></td>
+                    <td class="delete"> <a href="https://<?php echo URLROOT; ?>/exchanges/delete/<?= $row->id ?>" class="confirmDelete"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
 
             <?php endforeach; ?>
@@ -55,7 +55,7 @@
 
         <h4 class="add">Add new exchange: </h4>
 
-        <form action="http://<?php echo URLROOT ?>/exchanges/add" method="POST">
+        <form action="https://<?php echo URLROOT ?>/exchanges/add" method="POST">
             <label for="exchangename">Exchange name: </label>
             <input type="text" name="exchangename" id="exchangename" placeholder="Exchange name" class="textInput" required>
             <input type="submit" id="submit" value="Add">

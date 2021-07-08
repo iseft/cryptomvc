@@ -88,7 +88,7 @@ class Coin extends Model
             }
         }
 
-        header('location:http://' . URLROOT . '/portfolios/show');
+        header('location:https://' . URLROOT . '/portfolios/show');
     }
 
 
